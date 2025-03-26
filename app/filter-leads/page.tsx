@@ -15,7 +15,7 @@ import { toast } from 'sonner';
 
 export default function FilterLeads() {
   const [leads, setLeads] = useState<Lead[]>([]);
-  const [selectedStatus, setSelectedStatus] = useState<string>('');
+  const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -29,7 +29,8 @@ export default function FilterLeads() {
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (selectedStatus) {
+      // Skip filtering when selectedStatus is 'all'
+      if (selectedStatus !== 'all') {
         query = query.eq('status', selectedStatus);
       }
 
@@ -59,7 +60,7 @@ export default function FilterLeads() {
             <SelectValue placeholder="Select status to filter" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Statuses</SelectItem>
+            <SelectItem value="all">All Statuses</SelectItem>
             <SelectItem value="Pending">Pending</SelectItem>
             <SelectItem value="Contacted">Contacted</SelectItem>
             <SelectItem value="Converted">Converted</SelectItem>
