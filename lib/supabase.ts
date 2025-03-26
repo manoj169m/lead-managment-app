@@ -25,7 +25,3 @@ export type Comment = {
   content: string;
   created_at: string;
 };
-
-export type AuthError = {
-  message: string;
-};
