@@ -160,15 +160,16 @@ export default function Leads() {
   };
 
   // Helper function to format WhatsApp link
-  const formatWhatsAppLink = (phoneNumber: string) => {
-    // Remove any non-digit characters and add country code if missing
-    const cleanedNumber = phoneNumber.replace(/\D/g, '');
-    // Assuming US number, add +1 if not present
-    const formattedNumber = cleanedNumber.startsWith('1') 
-      ? `+${cleanedNumber}` 
-      : `+1${cleanedNumber}`;
-    return `https://wa.me/${formattedNumber}`;
-  };
+// Helper function to format WhatsApp link for India
+const formatWhatsAppLink = (phoneNumber: string) => {
+  // Remove any non-digit characters
+  const cleanedNumber = phoneNumber.replace(/\D/g, '');
+  // Assuming Indian number, add +91 if not present
+  const formattedNumber = cleanedNumber.startsWith('91')
+    ? `+${cleanedNumber}`
+    : `+91${cleanedNumber}`;
+  return `https://wa.me/${formattedNumber}`;
+};
 
   // Loading State
   if (loading) {
